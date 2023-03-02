@@ -159,22 +159,49 @@ abstract class  Model
      */
     private function homeDelete()
     {
-        return  "DELETE FROM {$this->table} WHERE ";
-       
+        return  "DELETE FROM {$this->table} ";
     }
 
     public function deleteById($id)
     {
-        $this->queryxxx=$this->homeDelete() . "{$this->id} = {$id}";
+        $this->queryxxx = $this->homeDelete() . "WHERE {$this->id} = {$id}";
         $this->getQuery($this->queryxxx);
     }
 
     /************************** FIN DELETE ***************************/
 
-    public function updateById($id, $data)
+
+    /************************** UPDATE ***************************/
+
+    public function set($data)
     {
+        $setxxxxx = '';
+        foreach ($data as $key => $value) {
+            $setxxxxx .= " $key=:$key,";
+        }
+        return trim($setxxxxx, ',');
     }
-    
+    public function homeUpdate($data)
+    {
+        return  "UPDATE  {$this->table} SET {$this->set($data)} ";
+    }
+
+    public function updateById($id, $dataxxxx)
+    {
+        $this->queryxxx = $this->homeUpdate($dataxxxx) . " WHERE {$this->id} = :{$this->id}";
+        $this->preparex = $this->db->prepare($this->queryxxx);
+
+        foreach ($dataxxxx as $key => $value) {
+            $this->preparex->bindValue(":nombres", $value);
+        }
+        $this->preparex->bindValue(":id", $id);
+        $this->preparex->execute();
+
+        return $this;
+        //$this->getQuery($this->queryxxx);
+    }
+
+    /************************** FIN UPDATE ***************************/
     public function insert($data)
     {
     }

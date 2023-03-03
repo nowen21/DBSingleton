@@ -132,7 +132,6 @@ abstract class  Model
     {
         $this->getSelect();
         $this->queryxxx .= $this->whereId($id);
-
         return $this->one();
     }
 
@@ -202,7 +201,9 @@ abstract class  Model
     /************************** FIN UPDATE ***************************/
 
     /************************** INSERTS ***************************/
-
+    /**
+     * armar las columnas
+     */
     public function insertColumns($dataxxxx)
     {
         $this->queryxxx = "INSERT INTO {$this->table} (";
@@ -212,27 +213,38 @@ abstract class  Model
         $this->queryxxx = trim($this->queryxxx, ', ') . ') ';
     }
 
+    /**
+     * armar los values
+     */
     public function insertValues($dataxxxx)
     {
-        $this->insertColumns($dataxxxx) ;
-        $this->queryxxx.= 'VALUES (';
+        $this->insertColumns($dataxxxx);
+        $this->queryxxx .= 'VALUES (';
         foreach ($dataxxxx as $key => $value) {
             $this->queryxxx .= ":{$key}, ";
         }
         $this->queryxxx = trim($this->queryxxx, ', ') . ') ';
     }
+
+    /**
+     * armar los BindValue
+     */
     public function insetBindValue($dataxxxx)
     {
         foreach ($dataxxxx as $key => $value) {
             $this->preparex->bindValue(":{$key}", $value);
         }
     }
+
+    /**
+     * realizar el insert
+     */
     public function insert($dataxxxx)
     {
         $this->insertValues($dataxxxx);
         $this->preparex = $this->db->prepare($this->queryxxx);
         $this->insetBindValue($dataxxxx);
-         $this->preparex->execute();
+        $this->preparex->execute();
         return $this;
     }
 

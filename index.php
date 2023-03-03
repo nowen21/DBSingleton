@@ -6,17 +6,22 @@ require_once(__DIR__ . '/models/Usuario.php');
 
 $usuarioModel = new Usuario();
 $usuario = $usuarioModel
-    
-    ->select()
-    ->all()
+    // * probar el seleccionar todo
+    // ->select()
+    // ->all()
 
+    // * probar el seleccionar un registro por el id
+    ->getById(7)
+
+    // * probar el seleccionar un registro por cualquier parámetro
     // ->select()
     // ->where('id',1)
     // ->one();
 
-
+    // * probar el delete por id
     //->deleteById(3)
 
+    // * probar el update por id
     // ->updateById(1, ['nombres' => 'nombre11',])
 
     // * probar el insert
@@ -24,7 +29,7 @@ $usuario = $usuarioModel
 
     //  ->viewQuery(true)
 
-    
+
 ;
 echo '<pre>';
 print_r($usuario);

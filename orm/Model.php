@@ -100,10 +100,11 @@ abstract class  Model
             $separado = '=';
         }
         $wherexxx = 'WHERE ';
-        if (strpos($this->queryxxx, $wherexxx)) {
+        if (strpos($this->queryxxx,'WHERE')!==false) {
             $wherexxx = 'AND ';
         }
-        $this->queryxxx .= "$wherexxx $camposxx $separado '$volorxxx'";
+       
+        $this->queryxxx .= "$wherexxx $camposxx $separado '$volorxxx' ";
         return $this;
     }
 
@@ -169,7 +170,8 @@ abstract class  Model
 
     public function delete()
     {
-        $this->queryxxx=$this->homeDelete();
+        $deletexx=$this->homeDelete();
+        $this->queryxxx=$deletexx.$this->queryxxx;
         $this->preparex = $this->db->prepare($this->queryxxx);
         $this->preparex->execute();
         return $this;
@@ -203,6 +205,13 @@ abstract class  Model
         }
         $this->preparex->bindValue(":id", $id);
         $this->preparex->execute();
+        return $this;
+    }
+
+
+    public function update($dataxxxx)
+    {
+        $this->queryxxx = $this->homeUpdate($dataxxxx);
         return $this;
     }
 

@@ -5,14 +5,18 @@ ESTRUCTURA DEL PROYECTO
 DBSingleton
 * |---config
 * |------configlobal.php
+         
          Se realiza la configuración de las variables globales 
 * |------database.php
+         
          Se realiza la configuración de o las base de datos a las que se pueda conectar el proyecto
 * |---db
 * |------Database.php
+         
          Clase en la que se realiza la conexión a la base de datos, tiene la lógica para conectarse con cualquier driver que soporte PDO
 * |---models
 * |------Usuario.php
+         
          Modelo para la tabla usuarios contien los siguientes atributos 
 
          // * Nombre de la tabla que representa este modelo
@@ -24,6 +28,7 @@ DBSingleton
          // protected $primaryKey = ''; // Es opcional
 * |---orm
 * |------Model.php
+         
          Clase abstracta en la que diseñanan los métodos para el CRUD de cualquier tabla, esta clase tiene la lógica para entender a que DB se debe conectar.
          Esta clase tien los siguiente atributos de tipo protected:
          protected $primaryKey = 'id';// id por defecto de la tabal

@@ -192,17 +192,49 @@ abstract class  Model
         $this->preparex = $this->db->prepare($this->queryxxx);
 
         foreach ($dataxxxx as $key => $value) {
-            $this->preparex->bindValue(":nombres", $value);
+            $this->preparex->bindValue(":{$key}", $value);
         }
         $this->preparex->bindValue(":id", $id);
         $this->preparex->execute();
-
         return $this;
-        //$this->getQuery($this->queryxxx);
     }
 
     /************************** FIN UPDATE ***************************/
-    public function insert($data)
+
+    /************************** INSERTS ***************************/
+
+    public function insertColumns($dataxxxx)
     {
+        $this->queryxxx = "INSERT INTO {$this->table} (";
+        foreach ($dataxxxx as $key => $value) {
+            $this->queryxxx .= "{$key}, ";
+        }
+        $this->queryxxx = trim($this->queryxxx, ', ') . ') ';
     }
+
+    public function insertValues($dataxxxx)
+    {
+        $this->insertColumns($dataxxxx) ;
+        $this->queryxxx.= 'VALUES (';
+        foreach ($dataxxxx as $key => $value) {
+            $this->queryxxx .= ":{$key}, ";
+        }
+        $this->queryxxx = trim($this->queryxxx, ', ') . ') ';
+    }
+    public function insetBindValue($dataxxxx)
+    {
+        foreach ($dataxxxx as $key => $value) {
+            $this->preparex->bindValue(":{$key}", $value);
+        }
+    }
+    public function insert($dataxxxx)
+    {
+        $this->insertValues($dataxxxx);
+        $this->preparex = $this->db->prepare($this->queryxxx);
+        $this->insetBindValue($dataxxxx);
+         $this->preparex->execute();
+        return $this;
+    }
+
+    /************************** FIN INSERTS ***************************/
 }

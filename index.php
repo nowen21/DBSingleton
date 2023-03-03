@@ -7,19 +7,24 @@ require_once(__DIR__ . '/models/Usuario.php');
 $usuarioModel = new Usuario();
 $usuario = $usuarioModel
     
-    // ->select()
-    //->all()
-
     ->select()
-    ->where('id',1)
-    ->one();
+    ->all()
+
+    // ->select()
+    // ->where('id',1)
+    // ->one();
 
 
     //->deleteById(3)
 
     // ->updateById(1, ['nombres' => 'nombre11',])
 
+    // * probar el insert
+    // ->insert(['nombres' => 'nombre12',])
+
     //  ->viewQuery(true)
+
+    
 ;
 echo '<pre>';
 print_r($usuario);

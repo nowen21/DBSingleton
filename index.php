@@ -21,6 +21,10 @@ $usuario = $usuarioModel
     // * probar el delete por id
     //->deleteById(3)
 
+
+    // * probar el delete por cualquier parametro
+    // ->delete()->where('nombres','nombre12')
+
     // * probar el update por id
     // ->updateById(1, ['nombres' => 'nombre11',])
 

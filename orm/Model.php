@@ -167,6 +167,14 @@ abstract class  Model
         $this->getQuery($this->queryxxx);
     }
 
+    public function delete()
+    {
+        $this->queryxxx=$this->homeDelete();
+        $this->preparex = $this->db->prepare($this->queryxxx);
+        $this->preparex->execute();
+        return $this;
+    }
+
     /************************** FIN DELETE ***************************/
 
 

@@ -13,7 +13,8 @@ DBSingleton
 * |---db
 * |------Database.php
          
-         Clase en la que se realiza la conexión a la base de datos, tiene la lógica para conectarse con cualquier driver que soporte PDO
+         Clase en la que se realiza la conexión a la base de datos, tiene la lógica para conectarse con cualquier driver que soporte 
+         PDO
 * |---models
 * |------Usuario.php
          
@@ -29,7 +30,8 @@ DBSingleton
 * |---orm
 * |------Model.php
          
-         Clase abstracta en la que diseñanan los métodos para el CRUD de cualquier tabla, esta clase tiene la lógica para entender a que DB se debe conectar.
+         Clase abstracta en la que diseñanan los métodos para el CRUD de cualquier tabla, esta clase tiene la lógica para entender a 
+         que DB se debe conectar.
          Esta clase tien los siguiente atributos de tipo protected:
          protected $primaryKey = 'id';// id por defecto de la tabal
          protected $table; // Nombre de la tabla, este viene del modelo que implementa la clase,

@@ -1,12 +1,13 @@
 <?php
 abstract class  Model
 {
-    protected $id = 'id';
-    protected $table;
-    protected $db;
-    protected $preparex;
+    protected $primaryKey = 'id';// id por defecto de la tabal
+    protected $table; // Nombre de la tabla, este viene del modelo que implementa la clase
+    protected $connection = null; // conexión por defecto, caso de utilizar otra
+    private $db;
+    private $preparex;
     private $queryxxx = '';
-    protected $configconn = null; // conexión por defecto, caso de utilizar otra
+    
 
     public function __construct()
     {
@@ -24,10 +25,10 @@ abstract class  Model
 
         $configur = $config['connections'];
         // * obtener la configuración de la DB por defecto
-        if (is_null($this->configconn)) {
-            $this->configconn = $configur['default'];
+        if (is_null($this->connection)) {
+            $this->connection = $configur['default'];
         }
-        return [$configur[$this->configconn], $this->configconn];
+        return [$configur[$this->connection], $this->connection];
     }
 
     /************************** ARMAR QUERY ***************************/
@@ -87,7 +88,7 @@ abstract class  Model
      */
     public function whereId($volorxxx)
     {
-        return "WHERE $this->id = '$volorxxx'";
+        return "WHERE $this->primaryKey = '$volorxxx'";
     }
 
     /**
@@ -164,7 +165,7 @@ abstract class  Model
 
     public function deleteById($id)
     {
-        $this->queryxxx = $this->homeDelete() . "WHERE {$this->id} = {$id}";
+        $this->queryxxx = $this->homeDelete() . "WHERE {$this->primaryKey} = {$id}";
         $this->getQuery($this->queryxxx);
     }
 
@@ -197,7 +198,7 @@ abstract class  Model
 
     public function updateById($id, $dataxxxx)
     {
-        $this->queryxxx = $this->homeUpdate($dataxxxx) . " WHERE {$this->id} = :{$this->id}";
+        $this->queryxxx = $this->homeUpdate($dataxxxx) . " WHERE {$this->primaryKey} = :{$this->primaryKey}";
         $this->preparex = $this->db->prepare($this->queryxxx);
         foreach ($dataxxxx as $key => $value) {
             $this->preparex->bindValue(":{$key}", $value);

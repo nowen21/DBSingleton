@@ -26,10 +26,13 @@ class Database
         }
     }
 
+    /**
+     * Crear una nueva instancia de la clase utilizando el patrón síngleton
+     */
     public static function getInstance($configconn)
     {
-        if (!self::$instance&& self::$configconn==!$configconn[1]) {
-            self::$configconn=$configconn[1];
+        if (!self::$instance && self::$configconn == !$configconn[1]) {
+            self::$configconn = $configconn[1];
             self::$instance = new  Database($configconn[0]);
         }
         return self::$instance;

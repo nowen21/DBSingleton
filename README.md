@@ -3,19 +3,19 @@ Conexión a base de datos mediante el patrón síngleton con diferentes motores 
 
 ESTRUCTURA DEL PROYECTO
 DBSingleton
-* |---config
+* |---config // Carpeta
 * |------configlobal.php
          
          Se realiza la configuración de las variables globales 
 * |------database.php
          
          Se realiza la configuración de o las base de datos a las que se pueda conectar el proyecto
-* |---db
+* |---db // Carpeta
 * |------Database.php
          
          Clase en la que se realiza la conexión a la base de datos, tiene la lógica para conectarse con cualquier driver que 
          soporte PDO
-* |---models
+* |---models // Carpeta 
 * |------Usuario.php
          
          Modelo para la tabla usuarios contien los siguientes atributos 
@@ -27,7 +27,7 @@ DBSingleton
 
          // * En el caso de que la tabla tenga otro nombre para el id, por defecto va a tener id
          // protected $primaryKey = ''; // Es opcional
-* |---orm
+* |---orm // Carpeta
 * |------Model.php
          
          Clase abstracta en la que diseñanan los métodos para el CRUD de cualquier tabla, esta clase tiene la lógica para entender 

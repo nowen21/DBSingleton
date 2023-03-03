@@ -33,7 +33,8 @@ $usuario = $usuarioModel
     // ->updateById(1, ['nombres' => 'nombre11',])
 
     // * probar el update por varios parametros
-    // ->update( ['nombres' => 'nombre11',])->where('nombres','nombre12')
+    // ->where('nombres','otra calabaza')
+    // ->update( ['nombres' => 'calabazacalabazacalabazacalabazacalabaza',])
 
     // * probar el insert
     // ->insert(['nombres' => 'nombre12'.$i,])

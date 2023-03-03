@@ -199,7 +199,6 @@ abstract class  Model
     {
         $this->queryxxx = $this->homeUpdate($dataxxxx) . " WHERE {$this->id} = :{$this->id}";
         $this->preparex = $this->db->prepare($this->queryxxx);
-
         foreach ($dataxxxx as $key => $value) {
             $this->preparex->bindValue(":{$key}", $value);
         }
@@ -211,7 +210,13 @@ abstract class  Model
 
     public function update($dataxxxx)
     {
-        $this->queryxxx = $this->homeUpdate($dataxxxx);
+        $queryxxx=$this->homeUpdate($dataxxxx);
+        $this->queryxxx= $queryxxx.$this->queryxxx;
+        $this->preparex = $this->db->prepare($this->queryxxx);
+        foreach ($dataxxxx as $key => $value) {
+            $this->preparex->bindValue(":{$key}", $value);
+        }
+        $this->preparex->execute();
         return $this;
     }
 
